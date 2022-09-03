@@ -28,6 +28,61 @@
   ]
 
 
+  function move(fileId, folderId) {
+    var file = folders.map((folder) => folder.files)
+      .flat()
+      .find((file) => file.id === fileId);
+  
+    var folderIndex = folders.findIndex((folder) => folder.id === folderId);
+  
+    if (!Object.hasOwn(folders[folderIndex], 'files')) {
+      folders[folderIndex]["files"] = [];
+    }
+    folders[folderIndex].files.push(file);
+    console.log(folders)
+  }
+
+  
+  function copy(fileId, folderId) {
+    var file = folders.map((folder) => folder.files)
+      .flat()
+      .find((file) => file.id === fileId);
+  
+    var folderIndex = folders.findIndex((folder) => folder.id === folderId);
+  
+    if (!Object.hasOwn(folders[folderIndex], 'files')) {
+      folders[folderIndex]["files"] = [];
+    }
+    folders[folderIndex].files.push(file);
+    console.log(folders)
+  }
+  
+  function remove(fileId) {
+    folders.forEach(function (folder) {
+      if (Object.hasOwn(folder, 'files')) {
+        folder.files = folder.files.filter(file => file.id !== fileId)
+      }
+    });
+    console.log(folders)
+  }
+  
+  function removeFolder(folderId) {
+    console.log(folders.filter((folder) => folder.id !== folderId));
+  }
+  
+  function parentFolderOf(fileId) {
+    var folderIndex = folders.findIndex((folder) => {
+      if (Object.hasOwn(folder, 'files')) {
+        if (folder.files.some((file) => file.id === fileId)) {
+          return true;
+        }
+      }
+      return false;
+    });
+  
+    console.log(folders[folderIndex].id)
+  }
+
 move(17,6) // dosyayı klasöre taşıyacak
 copy(18,7) // kopyasını oluşturacak
 remove(17) // dosyayı silecek

@@ -8,12 +8,26 @@
  */
 
 
+
 const input = {
     "cols": ["Name Surname", "Company", "Email", "Date", "Country", "City"],
     "data": [
         ["Hyacinth Vincent", "Duis Corporation", "iaculis.enim@magnaCrasconvallis.ca", "28/06/2022", "Eritrea", "Lyubertsy"],
         ["Brenden Martinez", "Volutpat Nunc Associates", "iaculis@estMauris.org", "24/03/2021", "British Indian Ocean Territory", "Colwood"]]
 }
+
+
+function denormalize (inp){
+    return inp.data.map((row) =>
+      inp.cols.reduce((prev, curr, idx) => {
+        if (!prev[curr]){
+            prev[curr] = row[idx]
+        } 
+        return prev
+      }, {})
+    )};
+  
+  console.log(denormalize(input));
 
 const sampleoutput = [
     {

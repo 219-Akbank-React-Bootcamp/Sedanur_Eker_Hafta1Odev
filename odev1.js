@@ -9,6 +9,17 @@
 
 //Test :
 
+Array.prototype.includesCi= function (substr) {
+    var result=false
+    this.forEach(element => {
+        if(element.toString().toLowerCase().includes(substr.toString().toLowerCase())){
+          result = true
+        }
+        })
+        return result
+  }
+
+
 const array = ["Patika","219","Akbank","React","Bootcamp"]
 
 console.log(array.includesCi("patika")===true ? "Beklendiği gibi" : "Beklendiği gibi değil")

@@ -11,6 +11,19 @@
 
 //İpucu 1: Array.prototype.groupByCustom =  dedikten sonra metodunuzu yazabilirsiniz
 
+Array.prototype.groupByCustom = function(input){
+    const group = this.map(input)
+    return this.reduce((prev, currVal, idx) => {
+        let groupKey = group[idx]
+        if (!prev[groupKey]) {
+            prev[groupKey] = []
+        }
+        prev[groupKey].push(currVal)
+        return prev;
+      }, {})
+    };
+
+
 //örnek array
 
 const array = [
@@ -239,6 +252,9 @@ const array = [
         "gender": "m"
     },
 ]
+
+console.log(array.groupByCustom(item=>item.gender))
+console.log(array.groupByCustom(item=>item.name[0]))
 
 //örnek çıktı array.groupByCustom(item=>item.gender) için
 /*
